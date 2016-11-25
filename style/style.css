@@ -1,0 +1,79 @@
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+.c-layout__title {
+    font-size: 36px;
+    text-align: center;
+    padding: 20px;
+}
+.c-picture-gallery {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+
+.c-picture-thumbnail {
+    float: left;
+    width: 100%;
+    padding: 10px;
+    cursor: pointer;
+}
+.c-picture-thumbnail img {
+    width:100%;
+}
+
+@media (min-width: 500px) {
+    .c-picture-thumbnail {
+        width: 50%;
+    }
+}
+
+
+.c-loading-disclaimer {
+    clear: both;
+    display: block;
+    font-size: 24px;
+    text-align: center;
+    padding: 20px;
+}
+
+.c-selected__overlay {
+    width:100vw;
+    height:100vh;
+    position: fixed;
+    top:0;
+    left: 0;
+    background: rgba(0,0,0,0.8);
+}
+
+
+.c-selected__container {
+    width:80%;
+    max-width: 500px;
+    display: block;
+    margin: 15px auto;
+}
+.c-selected__container img {
+    width:100%;
+}
+
+.overlay-controls {
+    color: #fff;
+    padding:10px 0;
+    position: relative;
+    overflow: auto;
+}
+
+.overlay-control__close {
+    position: absolute;
+    left:50%;
+    transform: translateX(-50%);
+    top: 13px;
+}
+.overlay-control__back {
+    float: left;
+}
+.overlay-control__forward {
+    float: right;
+}
