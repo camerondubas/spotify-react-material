@@ -6,7 +6,7 @@ let ExtractTextPlugin = require('extract-text-webpack-plugin');
 let HtmlWebpackPlugin = require('html-webpack-plugin');
 const BUILD = Boolean((process.argv.indexOf('--production') > -1));
 
-module.exports = buildConfig('./index.js', './public', '');
+module.exports = buildConfig('./index.js', './public', '/');
 
 /**
  * Builds a webpack config object
