@@ -24,8 +24,8 @@ const AlbumOverview = props => (
           <AvPlayArrow />
         </FloatingActionButton>
 
-        <h1 style={{fontSize: '2rem', fontWeight: '100', marginBottom: '.5rem'}}>{props.album.artists[0].name}</h1>
-        <h3 style={{fontSize: '1rem', fontWeight: '100'}}>{props.album.name}</h3>
+        <h1 style={{fontSize: '2rem', fontWeight: '100', marginBottom: '.5rem'}} dangerouslySetInnerHTML={{__html: props.title}} />
+        <h3 style={{fontSize: '1rem', fontWeight: '100', lineHeight: '1.3rem'}} dangerouslySetInnerHTML={{__html: props.subtitle}} />
       </div>
 
     </div>

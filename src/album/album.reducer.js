@@ -1,7 +1,9 @@
 let defaultState = {
   tracks: {
     items: []
-  }
+  },
+  images: [{}],
+  artists: [{}]
 };
 
 export default function artistReducer(state = defaultState, action) {

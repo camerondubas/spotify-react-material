@@ -2,11 +2,9 @@ import 'whatwg-fetch';
 
 export function fetchTrack(trackId) {
   return dispatch => {
-    console.log('fetchTrack');
-    console.log(trackId);
     dispatch({type: 'FETCH_TRACK_PENDING'});
 
-    fetch(`https://api.spotify.com/v1/tracks/${trackId}?market=CA`).then(
+    return fetch(`https://api.spotify.com/v1/tracks/${trackId}?market=CA`).then(
       response => response.json().then(
         data => dispatch({
           type: 'FETCH_TRACK_FULFILLED',

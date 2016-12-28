@@ -17,3 +17,16 @@ export function updatePlayer(audioData) {
     dispatch({type: 'UPDATE_PLAYER', payload: audioData});
   };
 }
+
+export function expandPlayer(delay = 3000) {
+  return dispatch => {
+    dispatch({type: 'EXPANDING_PLAYER'});
+    setTimeout(() => dispatch({type: 'EXPANDED_PLAYER'}), delay);
+  };
+}
+
+export function contractPlayer(delay = 3000) {
+  return dispatch => {
+    dispatch({type: 'CONTRACTED_PLAYER'});
+  };
+}

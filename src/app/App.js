@@ -2,51 +2,64 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import ActionSearch from 'material-ui/svg-icons/action/search';
-import AppBar from 'material-ui/AppBar';
-import IconButton from 'material-ui/IconButton';
+import Snackbar from 'material-ui/Snackbar';
 
+import SearchBar from '../search/SearchBar';
 import Player from '../player/Player';
-import {Link} from 'react-router';
+import Loader from '../loader/Loader';
 
-import {checkAuthorization} from '../authorize/autorize.actions';
+import { checkAuthorization } from '../authorize/autorize.actions';
+import { hideSnackbar } from '../snackbar/snackbar.actions';
 
-// Theme
-import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
+@connect(store => ({
+  snackbar: store.snackbar,
+  authorize: store.authorize,
+  player: store.player,
+  app: store.app,
+}))
 
-// TODO REACT-IZE this
-let theme = getMuiTheme(lightBaseTheme);
-
-@connect(store => ({}))
 export default class App extends React.Component {
   componentWillMount() {
     this.props.dispatch(checkAuthorization());
-
   }
+
+  componentDidMount() {
+    setTimeout(() => {
+      if (!this.props.authorize.authorized) {
+        this.props.router.push('/authorize');
+      }
+    })
+  }
+
+  handleSnackbarClose() {
+    this.props.dispatch(hideSnackbar());
+  }
+
   render() {
     return (
       <div>
-        <MuiThemeProvider muiTheme={theme}>
+        <MuiThemeProvider muiTheme={this.props.app.theme}>
           <div>
-            <Link to="/">
-              <AppBar
-                title="Spotify"
-                style={{position:'fixed'}}
-                iconElementLeft={<div></div>}
-                iconElementRight={<IconButton><ActionSearch color="#fff"/></IconButton>}
-              />
-
-            </Link>
+              <SearchBar />
 
             <div
               className="c-main-area"
-              style={{paddingTop: 64}}
+              style={{
+              paddingTop: 64,
+              marginBottom: this.props.player.visible ? 80 : 0
+              }}
             >
               {this.props.children}
             </div>
 
             <Player />
+            <Loader />
+            <Snackbar
+              open={this.props.snackbar.visible}
+              message={this.props.snackbar.message}
+              autoHideDuration={this.props.snackbar.duration}
+              onRequestClose={this.handleSnackbarClose.bind(this)}
+            />
           </div>
         </MuiThemeProvider>
       </div>

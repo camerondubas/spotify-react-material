@@ -1,5 +1,5 @@
 let defaultState = {
-  authorized: false,
+  authorized: false
 };
 
 export default function authorizeReducer(state = defaultState, action) {
